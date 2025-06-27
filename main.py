@@ -9,7 +9,7 @@ from datetime import datetime
 import pyodbc, os, csv
 from plyer import notification
 
-service_name = 'esealservice'
+service_name = 'service_name'
 
 print(f"""------------------------------------------------
         Tracking Server Service Status
@@ -18,11 +18,9 @@ print(f"""------------------------------------------------
 def check_service_status(ipaddr, username, password, service_name):
     """Check the status of a service on a remote PC."""
     try:
-        # Construct WinRM URL
-        remote_host = ipaddr
         
         # Create WinRM session
-        session = winrm.Session(remote_host, auth=(username, password), transport='ntlm')
+        session = winrm.Session(ipaddr, auth=(username, password), transport='ntlm')
         
         # PowerShell script to get service status
         ps_script = f"""
